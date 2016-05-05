@@ -1,0 +1,82 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-3">
+          <!-- <section>
+            <uib-alert ng-show="alert"
+                       type="{{alert.type}}"
+                       close="closeAlert()">
+                       {{alert.message}}
+            </uib-alert>
+          </section> -->
+            <form novalidate name="form">
+                <fieldset>
+                  <legend class="text-center">URL Detail</legend>
+                  <div class="form-group has-feedback" ng-class="{
+                    'has-error': form.originalurl.$invalid && form.originalurl.$dirty && form.originalurl.$error,
+                    'has-success': form.originalurl.$valid && form.originalurl.$touched && form.originalurl.$url }">
+                    <label  for="originalurl">Your URL</label>
+                    <input type="url" autocomplete="off" class="form-control" required
+                           name="originalurl" ng-model="urllist.originalurl">
+                    <p class="help-block" ng-messages="form.originalurl.$error">
+                      <span ng-message="required">Original URL is required</span>
+											<span ng-show="form.$error.url">Enter Valid URL</span>
+                    </p>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12 text-right">
+                      <button ng-click="save()" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || form.$pristine">Save Changes</button>
+                    </div>
+                  </div>
+                </fieldset>
+            </form>
+        </div>
+		<div class="col-md-9" data-ng-init="init()">
+			<section>
+				<uib-alert ng-show="alert"
+									 type="{{alert.type}}"
+									 close="closeAlert()">
+									 {{alert.message}}
+				</uib-alert>
+			</section>
+      <nav>
+        <ul class="pager">
+          <li class="previous">
+            <a href=""  ng-click="previousPage()">&larr; Previous</a>
+          </li>
+          <li class="next">
+            <a href=""  ng-click="nextPage()">Next &rarr;</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- <span ng-repeat="urllist in urllists">
+        <url-summary
+          cust="urllist">
+        </url-summary>
+      </span> -->
+			<div class="container" ng-repeat="urllist in urllists">
+			    <div class="row carousel-row">
+			        <div class="col-xs-8 slide-row">
+			            <div class="slide-content">
+			                <p>
+			                  <strong>ShortURL : </strong>{{urllist.domainname}}/#/UrlView/{{urllist.shorturl | name}}
+			                </p>
+			                <p>
+			                    <strong>Original URL : </strong>
+			                    {{ urllist.originalurl }}
+			                </p>
+			                <p>
+			                    <strong>IP address : </strong>
+			                    {{ urllist.ipaddress }}
+			                </p>
+			            </div>
+			            <div class="slide-footer">
+			                <span class="pull-right buttons">
+			                    <button class="btn btn-sm btn-danger" ng-click="destroy(urllist.id)">Delete Details</button>
+			                </span>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,59 @@
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <div class="panel-title">Sign Up</div>
+      <div style="float:right; font-size: 85%; position: relative; top:-10px"><%= link_to "Log in", new_session_path(resource_name) %></div>
+    </div>
+    <div class="panel-body" >
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form-horizontal',id: 'signupform'}) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="form-group">
+              <%= f.label :email , :class=>'col-md-3 control-label' %>
+              <div class="col-md-9">
+                  <%= f.email_field :email, autofocus: true, :class=>'form-control', :placeholder => "Enter Your Email Address" %>
+              </div>
+          </div>
+          <div class="form-group">
+              <%= f.label :username, :class=>'col-md-3 control-label' %>
+              <div class="col-md-9">
+                  <%= f.text_field :username, autofocus: true, :class=>'form-control', :placeholder => "Enter Your User Name" %>
+              </div>
+          </div>
+          <% if f.object.password_required? %>
+              <div class="form-group">
+                  <%= f.label :password, :class=>'col-md-3 control-label' %>
+                  <div class="col-md-9">
+                      <%= f.password_field :password, autocomplete: "off",:class=>'form-control', :placeholder => "Enter Your Password" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <%= f.label :password_confirmation,:class=>'col-md-3 control-label' %><br />
+                  <div class="col-md-9">
+                      <%= f.password_field :password_confirmation, autocomplete: "off",:class=>'form-control', :placeholder => "Enter Your Password Confirmation" %>
+                  </div>
+              </div>
+          <% end %>
+          <div class="form-group">
+              <div class="col-md-offset-3 col-md-9">
+                  <%= f.submit "Sign up" , :class=>'btn btn-info', :id=> 'btn-signup'%>
+                  <span style="margin-left:8px;">or</span>
+              </div>
+          </div>
+          <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+              <div class="row">
+
+                    <%- if devise_mapping.omniauthable? %>
+                      <%- resource_class.omniauth_providers.each do |provider| %>
+                      <div class="col-md-4">
+                        <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider),:class => "btn btn-#{provider}" %>
+                      </div>
+                      <% end -%>
+                    <% end -%>
+
+              </div>
+          </div>
+      <% end %>
+     </div>
+  </div>
+</div>

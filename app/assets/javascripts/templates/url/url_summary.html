@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row carousel-row">
+        <div class="col-xs-8 slide-row">
+            <div class="slide-content">
+                <p>
+                  <strong>ShortURL : </strong>{{cust.domainname}}/#/UrlView/{{cust.shorturl | name}}
+                </p>
+                <p>
+                    <strong>Original URL : </strong>
+                    {{ cust.originalurl | name }}
+                </p>
+                <p>
+                    <strong>IP address : </strong>
+                    {{ cust.ipaddress }}
+                </p>
+            </div>
+            <div class="slide-footer">
+                <span class="pull-right buttons" ng-if="viewDetailsFunction">
+                    <button class="btn btn-sm btn-primary" ng-click="viewDetailsFunction(cust)">View Details</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

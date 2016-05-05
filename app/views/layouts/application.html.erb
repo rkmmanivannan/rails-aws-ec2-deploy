@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Urlshortner</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="url">
+
+  <% if user_signed_in? %>
+    <%= render "layouts/navigation" %>
+  <% end %>
+  <% flash.each do |name,msg| %>
+    <%= content_tag(:div, flash[:"#{name}"], :id => "flash_#{name}",:class => "alert alert-danger") if flash[:error] || flash[:alert] %>
+    <%= content_tag(:div, flash[:notice], :id => "flash_notice",:class => "alert alert-info") if flash[:notice] %>
+  <% end %>
+  <%= yield %>
+  <%= render "layouts/footer" %>
+
+</body>
+</html>

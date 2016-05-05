@@ -1,0 +1,48 @@
+<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div class="panel panel-info" >
+    <div class="panel-heading">
+        <div class="panel-title">Sign In</div>
+        <div style="float:right; font-size: 80%; position: relative; top:-10px"><%= link_to "Forgot your password?", new_password_path(resource_name) %></div>
+    </div>
+    <div style="padding-top:30px" class="panel-body" >
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-horizontal',id: 'loginform'}) do |f| %>
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+            <%= f.text_field :username, autofocus: true, :class => "form-control",:placeholder => "Enter your username" %>
+          </div>
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+            <%= f.password_field :password, autocomplete: "off", :class => "form-control", :id => "login-password", :placeholder => "password" %>
+          </div>
+          <div class="input-group">
+            <div class="checkbox">
+              <label>
+                <%= f.check_box :remember_me, :id => "login-remember" %>
+                <%= f.label :remember_me %>
+              </label>
+            </div>
+          </div>
+          <div style="margin-top:10px" class="form-group">
+              <div class="col-sm-12 controls">
+                <%= f.submit "Log in", :id => "btn-login", :class => "btn btn-success"  %>
+                <%- if devise_mapping.omniauthable? %>
+                  <%- resource_class.omniauth_providers.each do |provider| %>
+                    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider),:class => "btn btn-#{provider}" %>
+                  <% end -%>
+                <% end -%>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-12 control">
+                  <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                      Don't have an account!
+                  <%= link_to "Sign Up Here", new_registration_path(resource_name) %>
+                  </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
